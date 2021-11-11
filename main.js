@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', (e) => { 
-    const listener = new Listener()
+    const game = new Game()
+    const listener = new Listener(game)
 })
 
 
