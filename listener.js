@@ -3,24 +3,22 @@ class Listener {
     game
 
     constructor() {
-        this.startButtonClicked()
+        // Reigister start button click listener
+        document.querySelector('.start-button').addEventListener('click', (e) => this.startButtonClicked(e))
     }
 
-    startButtonClicked = () => {
-        document.querySelector('.start-button').addEventListener('click', function() {
-            this.game = new Game()
-            this.keyPressed()
-        })
+    startButtonClicked = (e) => {
+        e.target.remove() // Remove click button
+        this.game = new Game() // Create game
+        document.addEventListener('keypress', (e) => this.keyPressed(e)) // Register key pressed event listener
     }
 
-    keyPressed = () => {
-        document.addEventListener('keypress', (e) => {
-            console.log("Key pressed")
-            let key = e.key;
-            this.game.updatePlayerInput(key)
-            let playerInput = this.game.getPlayerInput()
-            document.querySelector("#text-input").innerText = playerInput;
-        })
+    keyPressed = (e) => {
+        console.log("Key pressed")
+        let key = e.key;
+        this.game.updatePlayerInput(key)
+        let playerInput = this.game.getPlayerInput()
+        document.querySelector("#text-input").innerText = playerInput;
     }
 
 }
